@@ -1,0 +1,7 @@
+[package]
+name = "odoo-xmlrpc"
+version = "0.1.0"
+authors = ["werner <werner_a_e@yahoo.es>"]
+
+[dependencies]
+xmlrpc = "0.11.0"
