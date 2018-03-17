@@ -1,3 +1,4 @@
+use std::collections::BTreeMap;
 use xmlrpc::{Request, Value, Error};
 
 pub struct BasicRequest<'a> {
@@ -13,7 +14,8 @@ impl<'a> BasicRequest<'a> {
   }
 
   pub fn authenticate(&mut self, db: &str, username: &str, password: &str) -> Result<Value, Error> {
-    let request = Request::new("authenticate").arg(db).arg(username).arg(password);
+    let user_agent_env: BTreeMap<String, Value> = BTreeMap::new();
+    let request = Request::new("authenticate").arg(db).arg(username).arg(password).arg(Value::Struct(user_agent_env));
     self.execute_method(request) 
   }
 
